@@ -1,0 +1,66 @@
+div.header>div:last-child a {
+    color: var(--pastel-green-500);
+}
+
+div.header>div:last-child a:hover {
+    color: var(--pastel-green-400);
+}
+
+.vacio {
+    margin: 10vh auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2em;
+}
+
+.vacio a {
+    font-weight: bold;
+    color: var(--pastel-green-500);
+}
+
+.vacio a:hover {
+    color: var(--pastel-green-700);
+}
+
+.imagen-producto {
+    background-color: var(--pastel-green-50);
+    min-height: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+input[type=button] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    font-size: 0.8em;
+    font-weight: bold;
+
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    padding: 1.5vh 1.5vw;
+    text-align: center;
+
+    overflow-wrap: normal;
+    overflow: hidden;
+
+    color: var(--pastel-green-50);
+    background-color: var(--pastel-green-500);
+    border: none;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+    color: var(--pastel-green-900);
+    background-color: var(--pastel-green-400);
+}

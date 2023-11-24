@@ -1,0 +1,147 @@
+:root {
+    --pastel-green-50: rgb(238 252 233);
+    --pastel-green-100: rgb(218 248 207);
+    --pastel-green-200: rgb(183 242 164);
+    --pastel-green-300: rgb(139 231 111);
+    --pastel-green-400: rgb(111 219 81);
+    --pastel-green-500: rgb(67 190 36);
+    --pastel-green-600: rgb(48 151 25);
+    --pastel-green-700: rgb(39 115 24);
+    --pastel-green-800: rgb(35 92 24);
+    --pastel-green-900: rgb(33 78 25);
+    --pastel-green-950: rgb(12 43 8);
+}
+
+html {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: var(--pastel-green-50);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    color: var(--pastel-green-800);
+}
+
+div.header {
+    margin: 0px;
+    padding: 0.5vh 0.5vw;
+
+    height: 10vh;
+
+    color: var(--pastel-green-700);
+    background-color: var(--pastel-green-100);
+
+    display: flex;
+    align-items: center;
+}
+
+div.header>div {
+    width: 50%;
+
+    padding: 1vh 1vw;
+}
+
+div.header>div:first-child {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+div.header>div:last-child {
+    display: flex;
+    justify-content: right;
+}
+
+div.header>div:last-child>* {
+    margin: auto 1vw;
+}
+
+div.header>div:last-child a {
+    color: var(--pastel-green-50);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+div.nav {
+    padding: 1vh 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: calc(1em + 1vh);
+
+    background-color: var(--pastel-green-50);
+
+    border-bottom: 1px solid var(--pastel-green-800);
+}
+
+nav>* {
+    padding: 1vh 1vw;
+    margin: 0vh 1vw;
+}
+
+nav>*:hover {
+    background-color: var(--pastel-green-100);
+}
+
+h1 {
+    color: var(--pastel-green-50);
+    font-size: 1.5em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--pastel-green-800);
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 3vh 1vw;
+}
+
+section>header {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0px;
+    padding: 0.5vh 2vw;
+
+    border-bottom: 1px solid var(--pastel-green-800);
+}
+
+section>header>div {
+    width: 100%;
+}
+
+.buscador {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+#buscador {
+    flex: 100vw;
+}
+
+body>footer {
+    width: 100%;
+    height: 10vh;
+
+    display: flex;
+    background-color: var(--pastel-green-800);
+}
