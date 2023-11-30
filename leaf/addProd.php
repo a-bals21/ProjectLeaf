@@ -37,16 +37,45 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for="imagen">Sube una imagen:</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*">
+                    <label for="ISBN">ingrese el ISBN</label><br>
+                    <input type="text" id="ISBN" name="ISBN">
                 </fieldset>
-                    <input type="text" name="titulo">
-                    <input type="number" id="tentacles" name="tentacles" min="0">
+
                 <fieldset>
-                    <legend>Descripcion</legend>
-                    <textarea name="textarea" cols="30" rows="10">Escriba aquí</textarea>
+                    <label for="titulo"> titulo de libro</label><br>
+                    <input type="text" name="titulo">
+                </fieldset>
+
+                <fieldset>
+                    <label for="precio"> precio del producto</label><br>
+                    <input type="number" id="precio" name="precio" min="0">
+                </fieldset>
+
+                <fieldset>
+                    <label for="autor"> autor del libro</label><br>
+                    <input type="text" id="autor" name="autor">
+                </fieldset>
+
+                <fieldset>
+                    <label for="descripcion">descripcion del producto</label>
+                    <input name="textarea" cols="30" rows="10">Escriba aquí</textarea>
                 </fieldset>
                 
+                <fieldset>
+                    <label for="nombre">Nombre del producto</label><br>
+                    <input type="text" id="nombre" name="nombre">
+                </fieldset>
+
+                <fieldset>
+                    <label for="imagen">foto del producto</label><br>
+                    <input type="file" name="immagen">
+                </fieldset>
+
+                <fieldset>
+                    <label for="stock">número de productos disponibles</label><br>
+                    <input type="number" id="stock" name="stock">
+                </fieldset>
+
                     <input type="submit" value="publicar">
                     <input type="reset" value="cancelar">
             </form>
