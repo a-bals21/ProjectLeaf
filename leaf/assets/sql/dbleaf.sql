@@ -48,7 +48,7 @@ CREATE TABLE Producto(
     precio DECIMAL(10,2) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     imagen TEXT NOT NULL, -- direccion de la imagen
-    categoria ENUM('S/C', 'libro', 'juego', 'papelería', 'audiolibro', 'ebook') default 'S/C' NOT NULL,
+    categoria ENUM('s-c', 'libro', 'juego', 'papeleria', 'audiolibro', 'ebook') default 's-c' NOT NULL,
     stock INT unsigned NOT NULL default 0,
     primary key (ID)
 );
@@ -91,7 +91,7 @@ create table Editorial(
 CREATE TABLE Libro(
     ISBN VARCHAR(255),
     año_publicado YEAR NOT NULL,
-    genero ENUM('S/G', 'horror', 'romance', 'drama/misterio', 'comic/manga', 'accion/aventura', 'ciencia ficción/fantasía') default 'S/G' NOT NULL,
+    genero ENUM('s-g', 'horror', 'romance', 'drama-misterio', 'comic-manga', 'accion-aventura', 'cf-fantasia') default 's-g' NOT NULL,
     editorial INT unsigned,
     ID_producto INT unsigned,
     primary key(ISBN),

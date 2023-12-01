@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../data/conexionbd.php';
+require './../data/conexionbd.php';
 
 $db = new Conexion();
 $username = $_GET['username'];

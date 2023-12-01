@@ -12,6 +12,15 @@
     --pastel-green-950: rgb(12 43 8);
 }
 
+body>header svg>path {
+    fill: var(--pastel-green-500);
+    font-size: 1em;
+}
+
+body>header svg:hover>path {
+    fill: var(--pastel-green-400);
+}
+
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

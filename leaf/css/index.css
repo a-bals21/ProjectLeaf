@@ -4,15 +4,6 @@
     background-color: var(--pastel-green-200);
 }
 
-body>header svg>path {
-    fill: var(--pastel-green-500);
-    font-size: 1em;
-}
-
-body>header svg:hover>path {
-    fill: var(--pastel-green-400);
-}
-
 #productos {
     width: 90%;
 

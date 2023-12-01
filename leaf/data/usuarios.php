@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/conexionbd.php';
+require './conexionbd.php';
 
 class Usuario {
     public $username;

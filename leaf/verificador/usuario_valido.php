@@ -1,21 +1,34 @@
 <?php
-require __DIR__ . '/../data/conexionbd.php';
+require './../data/conexionbd.php';
 
-session_start();
-
-$esValido = false;
+$esValido = true;
 
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
 
     $db = new Conexion();
 
     $result = $db->conexion->query(
-        "select * from Usuario where username ='$username' and password = '$password'"
+        "select * from Usuario where username ='$username'"
     );
 
-    if ($result->num_rows <= 0) header("Location: " . __DIR__ . "/../index.php");
+    $row = $result->fetch_assoc();
+
+    if ($result->num_rows > 0
+        && password_verify($_SESSION['password'], $row['password'])
+    ) {
+        if ($_GET["u"] == 'c') {
+            if ($row['usertype'] != 'cliente') $esValido = false;
+        } else {
+            if ($row['usertype'] != 'admin') $esValido = false;
+        }
+    } else {
+        $esValido = false;
+    }
 } else {
-    header("Location: " . __DIR__ . "/../index.php");
+    $esValido = false;
+}
+
+if (!$esValido) {
+    header("Location: ./../index.php");
 }

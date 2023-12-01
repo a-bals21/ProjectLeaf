@@ -1,12 +1,5 @@
 <?php
-require __DIR__ . "/comprobadores/usuario_valido.php";
-
-if (isset($_SESSION['usertype'])) {
-    $usertype = $_SESSION['usertype'];
-    if ($usertype != 'admin') header("Location: " . __DIR__ . "/../index.php");
-} else {
-    header("Location: " . __DIR__ . "/../index.php");
-}
+require "./../verificador/usuario_valido.php?u=a";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,7 +24,7 @@ if (isset($_SESSION['usertype'])) {
             </fieldset>
             <fieldset>
                 <label for="descripcion">Descripcion:</label>
-                <textarea name="descripcion" cols="30" rows="10">Escriba aquí</textarea>
+                <textarea name="descripcion" cols="30" rows="10" placeholder="Escriba aquí" required></textarea>
             </fieldset>
             <fieldset>
                 <label for="imagen">Imagen:</label><br>
@@ -44,12 +37,12 @@ if (isset($_SESSION['usertype'])) {
             <fieldset>
                 <label for="tipo-producto">Selecciona su categoría</label>
                 <select name="tipo-producto" id="tipo-producto">
-                    <option value="S/C" selected>Sin categoría</option>
-                    <option value="libro"></option>
-                    <option value="juego"></option>
-                    <option value="papelería"></option>
-                    <option value="audioLibro"></option>
-                    <option value="ebook"></option>
+                    <option value="s-c" selected>Sin categoría</option>
+                    <option value="libro">Libro</option>
+                    <option value="juego">Juego</option>
+                    <option value="papeleria">Papelería</option>
+                    <option value="audioLibro">Audiolibro</option>
+                    <option value="ebook">Ebook</option>
                 </select>
             </fieldset>
             <fieldset id="info-libro">
@@ -65,7 +58,7 @@ if (isset($_SESSION['usertype'])) {
                 <fieldset>
                     <label for="autor">Autor/Autores del libro:</label><br>
                     <input type="text" id="autor" name="autor" required>
-                    <span class="note">Si es más de uno separalos con comas</span>
+                    <p class="nota">Si es más de uno separalos con comas</p>
                 </fieldset>
                 <fieldset>
                     <label for="autor">Editorial del libro:</label><br>
@@ -96,6 +89,18 @@ if (isset($_SESSION['usertype'])) {
         if (campoFecha != null) {
             campoFecha.max = (new Date()).getFullYear;
         }
+
+        let info_libro =document.querySelector("#info-libro")
+        info_libro.style.display = "none"
+
+        let cb = document.querySelector("select#tipo-producto")
+        cb.addEventListener('change', () => {
+            if (cb.value == 'libro') {
+                info_libro.style.display = "block"
+            } else {
+                info_libro.style.display = "none"
+            }
+        })
     </script>
 </body>
 
