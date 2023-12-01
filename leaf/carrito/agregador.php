@@ -1,5 +1,5 @@
 <?php
-include 'data/productos.php';
+include __DIR__.'/../data/productos.php';
 
 session_start();
 
@@ -26,7 +26,7 @@ if (hayProductoEnCarrito($producto_id)) {
 $producto = obtenerProducto( $producto_id );
 
 $info = array(
-    "Agregando a '$producto->name' al carrito",
+    "Agregando a '$producto->nombre' al carrito",
     "Carrito:".json_encode($_SESSION['carrito'])
 );
 

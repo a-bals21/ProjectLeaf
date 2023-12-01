@@ -1,5 +1,4 @@
 <?php
-header("Cross-Origin-Resource-Policy: *");
 session_start();
 
 if (!isset($_SESSION["carrito"])) {
@@ -14,25 +13,25 @@ if (!isset($_SESSION["carrito"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main_style.css">
-    <link rel="stylesheet" href="css/stick_header.css">
-    <link rel="stylesheet" href="css/rejillas.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/main_style.css">
+    <link rel="stylesheet" href="./css/stick_header.css">
+    <link rel="stylesheet" href="./css/rejillas.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-    <script type="text/javascript" src="js/carrito.js"></script>
+    <script type="text/javascript" src="./js/carrito.js"></script>
 </head>
 
 <body>
     <header>
         <div class="header">
             <div>
-                <a href="index.php">
+                <a href="./index.php">
                     <picture>
-                        <img src="assets/img/leaf.svg" width="40vw" alt="logo_leaf">
+                        <img src="./assets/img/leaf.svg" width="40vw" alt="logo_leaf">
                     </picture>
                 </a>
-                <a href="index.php">leaf</a>
+                <a href="./index.php">leaf</a>
             </div>
             <div>
                 <div id="notificaciones"></div>
@@ -70,13 +69,13 @@ if (!isset($_SESSION["carrito"])) {
         </header>
         <div id="productos" class="rejilla" style="grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));">
             <?php
-            include 'data/productos.php';
+            include __DIR__.'/data/productos.php';
 
             $PRODUCTOS = obtenerProductos();
 
             foreach ($PRODUCTOS as $producto) {
                 print '<div class="producto">';
-                mostrarProducto($producto);
+                mostrarProducto($producto, "./");
                 print '<div class="controles">';
                 print '<input type="button" producto-id="' . $producto->id . '" value="Agregar al carrito" onclick="sumarACarrito(this)">';
                 print "</div>";
@@ -84,10 +83,10 @@ if (!isset($_SESSION["carrito"])) {
             }
             ?>
         </div>
+        <a href="#">Ver mas</a>
     </section>
     <footer>
         <p>leaf&copy;</p>
-        
     </footer>
 </body>
 

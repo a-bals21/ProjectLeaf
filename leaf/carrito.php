@@ -9,27 +9,27 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main_style.css">
-    <link rel="stylesheet" href="css/rejillas.css">
-    <link rel="stylesheet" href="css/carrito.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/main_style.css">
+    <link rel="stylesheet" href="./css/rejillas.css">
+    <link rel="stylesheet" href="./css/carrito.css">
 
-    <script type="text/javascript" src="js/carrito.js"></script>
+    <script type="text/javascript" src="./js/carrito.js"></script>
 </head>
 
 <body>
     <header>
         <div class="header">
             <div>
-                <a href="index.php">
+                <a href="./index.php">
                     <picture>
-                        <img src="/assets/img/leaf.svg" width="40vw" alt="logo_leaf">
+                        <img src="./assets/img/leaf.svg" width="40vw" alt="logo_leaf">
                     </picture>
                 </a>
-                <a href="index.php">leaf</a>
+                <a href="./index.php">leaf</a>
             </div>
             <div>
-                <a href="index.php">Volver</a>
+                <a href="./index.php">Volver</a>
             </div>
         </div>
         <div class="nav">
@@ -45,7 +45,7 @@ session_start();
             </div>
         </header>
         <?php
-        include 'data/productos.php';
+        include __DIR__.'/data/productos.php';
 
         if (count($_SESSION["carrito"]) == 0) {
             echo '<div class="vacio">';
@@ -66,11 +66,11 @@ session_start();
 
             foreach ($productos as $producto_id => $cantidad) {
                 $producto = obtenerProducto($producto_id);
-                $producto->quantity = $cantidad;
+                $producto->cantidad = $cantidad;
 
-                mostrarProductoCarrito($producto);
+                mostrarProductoCarrito($producto, "./");
 
-                $precioTotal = floatval($producto->price) * intval($producto->quantity);
+                $precioTotal = floatval($producto->precio) * intval($producto->cantidad);
                 print '<div class="precio-total-producto"><p>$' . number_format($precioTotal, 2) . "</p></div>";
 
                 print '<div class="controles">';
@@ -86,6 +86,9 @@ session_start();
         }
         ?>
     </section>
+    <footer>
+        <p>leaf&copy;</p>
+    </footer>
 
     <script type="text/javascript">
         let carro = document.querySelector("#productos")

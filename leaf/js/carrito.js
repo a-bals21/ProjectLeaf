@@ -1,7 +1,7 @@
 function sumarACarrito(fuente) {
     let id = fuente.getAttribute("producto-id");
 
-    fetch('carrito/agregador.php/?id=' + id)
+    fetch('../carrito/agregador.php/?id=' + id)
         .then(
             response => {
                 if (response.ok) {
@@ -17,7 +17,7 @@ function sumarACarrito(fuente) {
         .finally(
             () => {
                 let notificaciones = document.querySelector("#notificaciones")
-                
+
                 if (notificaciones != null) {
                     let notificacionAnterior = notificaciones.querySelector(".notificacion")
 
@@ -32,7 +32,6 @@ function sumarACarrito(fuente) {
                     })
                     notificaciones.append(notificacion)
 
-
                     let text = document.createTextNode("Se ha agregado!")
                     notificacion.appendChild(text)
 
@@ -45,7 +44,7 @@ function sumarACarrito(fuente) {
 function restarDeCarrito(fuente) {
     let id = fuente.getAttribute("producto-id");
 
-    fetch('carrito/quitador.php/?id=' + id)
+    fetch('../carrito/quitador.php/?id=' + id)
         .then(
             response => {
                 if (response.ok) {
@@ -66,7 +65,7 @@ function restarDeCarrito(fuente) {
 function eliminarDeCarrito(fuente) {
     let id = fuente.getAttribute("producto-id");
 
-    fetch('carrito/eliminador.php/?id=' + id)
+    fetch('../carrito/eliminador.php/?id=' + id)
         .then(
             response => {
                 if (response.ok) {
