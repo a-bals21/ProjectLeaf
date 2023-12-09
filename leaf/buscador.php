@@ -11,7 +11,7 @@ if (!isset($_SESSION["carrito"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Busqueda</title>
 
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/main_style.css">
@@ -61,13 +61,13 @@ if (!isset($_SESSION["carrito"])) {
     <section>
         <header>
             <div>
-                <h2>Libros</h2>
+                <h2>Busqueda</h2>
             </div>
             <div class="buscador">
                 <form action="./buscador.php" method="post">
                     <fieldset>
                         <label for="buscar">Buscar:</label>
-                        <input type="text" name="buscar" id="buscar" placeholder="Nombre del libro">
+                        <input type="text" name="buscar" id="buscar" value="<?php echo $_POST['buscar']?>" placeholder="Nombre del libro">
                     </fieldset>
                     <input type="submit" value="Buscar">
                 </form>
@@ -76,8 +76,14 @@ if (!isset($_SESSION["carrito"])) {
         <div id="productos" class="rejilla" style="grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));">
             <?php
             require __DIR__.'/data/productos.php';
-
-            $USUARIOS = obtenerProductos();
+            
+            $busqueda = $_POST["buscar"];
+            if (isset($_GET['page'])) {
+                $pagina = intval($_GET['page']);
+                $USUARIOS = obtenerProductosPorTitulo($busqueda, $pagina);
+            } else {
+                $USUARIOS = obtenerProductosPorTitulo($busqueda);   
+            }
 
             foreach ($USUARIOS as $usuario) {
                 print '<div class="producto">';
@@ -90,9 +96,46 @@ if (!isset($_SESSION["carrito"])) {
             ?>
         </div>
     </section>
+    <section>
+        <input type="button" value="<" onclick="decrementar()">
+        <form action="./buscador.php" method="post" id="control">
+            <fieldset>
+                <input type="hidden" name="buscar" id="buscar" value="<?php echo $_POST['buscar']?>">
+                <input type="number" name="page" id="page" value="<?php
+                if (isset($_POST['page'])) {
+                    echo $_POST['page'];
+                } else {
+                    echo 1;
+                }
+                ?>">
+            </fieldset>
+            <input type="submit" value="Ir">
+        </form>
+        <input type="button" value=">" onclick="aumentar()">
+    </section>
     <footer>
         <p>leaf&copy;</p>
     </footer>
+    
+    <script>
+        let control = document.querySelector("form#control")
+        
+        function aumentar() {
+            let pagina = document.querySelector("#page")
+            
+            pagina.value = parseInt(pagina.value) + 1
+            control.submit()
+        }
+        
+        function decrementar() {
+            let pagina = document.querySelector("#page")
+            
+            if (parseInt(pagina.value) > 1) {
+                pagina.value = parseInt(pagina.value) - 1
+            }
+            control.submit()
+        }
+    </script>
 </body>
 
 </html>

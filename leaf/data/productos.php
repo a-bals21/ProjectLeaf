@@ -1,5 +1,5 @@
 <?php
-require './conexionbd.php';
+require_once __DIR__.'/conexionbd.php';
 
 class Producto
 {
@@ -138,7 +138,7 @@ function obtenerLibros(int $page_number = 1, int $page_size = PAGE_SIZE): array
     if ($result->num_rows > 0) {
         while ($fila = $result->fetch_assoc()) {
             $libro = crearLibro($fila);
-            if ($libro != null) $libro->autores = obtenerAutores($libro->ISBN);
+            if ($libro != null) $libro->autores = obtenerAutoresDeLibro($libro->ISBN);
 
             $libros[] = $libro;
         }
@@ -159,7 +159,7 @@ function obtenerLibrosPorGenero(string $genero, int $page_number = 1, int $page_
     if ($result->num_rows > 0) {
         while ($fila = $result->fetch_assoc()) {
             $libro = crearLibro($fila);
-            if ($libro != null) $libro->autores = obtenerAutores($libro->ISBN);
+            if ($libro != null) $libro->autores = obtenerAutoresDeLibro($libro->ISBN);
 
             $libros[] = $libro;
         }
@@ -180,7 +180,7 @@ function obtenerLibrosPorTitulo(string $titulo, int $page_number = 1, int $page_
     if ($result->num_rows > 0) {
         while ($fila = $result->fetch_assoc()) {
             $libro = crearLibro($fila);
-            if ($libro != null) $libro->autores = obtenerAutores($libro->ISBN);
+            if ($libro != null) $libro->autores = obtenerAutoresDeLibro($libro->ISBN);
 
             $libros[] = $libro;
         }
@@ -203,7 +203,7 @@ function obtenerLibro(string $ISBN): Libro | null
         $libro = crearLibro($data);
     }
 
-    if ($libro != null) $libro->autores = obtenerAutores($libro->ISBN);
+    if ($libro != null) $libro->autores = obtenerAutoresDeLibro($libro->ISBN);
 
 
     return $libro;
@@ -223,17 +223,17 @@ function obtenerLibroPorID(int $id): Libro | null
         $libro = crearLibro($data);
     }
 
-    if ($libro != null) $libro->autores = obtenerAutores($libro->ISBN);
+    if ($libro != null) $libro->autores = obtenerAutoresDeLibro($libro->ISBN);
 
     return $libro;
 }
 
-function obtenerAutores(string $ISBN): array
+function obtenerAutoresDeLibro(string $ISBN): array
 {
     $autores = array();
     $db = new Conexion();
 
-    $result = $db->conexion->query("select autor from LibroAutor where ISBN = '$ISBN' inner join Autor on LibroAutor.autor = Autor.ID");
+    $result = $db->conexion->query("select la.autor from LibroAutor as la where la.ISBN = '$ISBN' inner join Autor a on la.autor = a.ID");
 
     if ($result->num_rows > 0) {
         while ($fila = $result->fetch_assoc()) {
@@ -242,6 +242,43 @@ function obtenerAutores(string $ISBN): array
     }
 
     return $autores;
+}
+
+function obtenerAutores(): array
+{
+    $autores = array();
+    $db = new Conexion();
+
+    $result = $db->conexion->query("select * from Autor");
+
+    if ($result->num_rows > 0) {
+        while ($fila = $result->fetch_assoc()) {
+            $id = $fila["ID"];
+            $nombre = $fila["nombres"];
+            $apellido = $fila["apellidos"];
+            $autores[$id] = $nombre . " " . $apellido;
+        }
+    }
+
+    return $autores;
+}
+
+function obtenerEditoriales(): array
+{
+    $editoriales = array();
+    $db = new Conexion();
+
+    $result = $db->conexion->query("select * from Editorial");
+
+    if ($result->num_rows > 0) {
+        while ($fila = $result->fetch_assoc()) {
+            $id = $fila["ID"];
+            $nombre = $fila["nombre"];
+            $editoriales[$id] = $nombre;
+        }
+    }
+
+    return $editoriales;
 }
 
 function mostrarProducto(Producto $producto, string $ruta_raiz)

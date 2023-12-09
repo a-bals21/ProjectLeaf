@@ -1,11 +1,3 @@
-div.header>div:last-child a {
-    color: var(--pastel-green-500);
-}
-
-div.header>div:last-child a:hover {
-    color: var(--pastel-green-400);
-}
-
 .vacio {
     margin: 10vh auto;
 

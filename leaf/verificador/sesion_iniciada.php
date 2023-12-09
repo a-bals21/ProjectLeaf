@@ -1,7 +1,7 @@
 <?php
-require './../data/conexionbd.php';
+require_once __DIR__.'/../data/conexionbd.php';
 
-session_start();
+if(session_status() != PHP_SESSION_ACTIVE) session_start();
 
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     $username = $_SESSION['username'];
@@ -14,10 +14,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $usertype = $row['usertype'];
+        $tipo_usuario = $row['tipo_usuario'];
 
         if (password_verify($_SESSION['password'], $row['password'])) {
-            if ($usertype == 'admin') {
+            if ($tipo_usuario == 'admin') {
                 header("Location: ./../panel_admin/panel.php");
             } else {
                 header("Location: ./../panel_cliente/panel.php");
@@ -28,6 +28,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     } else {
         header("Location: ./../inicio_sesion.php?err=1");
     }
+} else {
+    header("Location: ./../inicio_sesion.php");
 }
-
-header("Location: ./../inicio_sesion.php");

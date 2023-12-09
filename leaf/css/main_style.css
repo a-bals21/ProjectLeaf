@@ -21,6 +21,22 @@ body>header svg:hover>path {
     fill: var(--pastel-green-400);
 }
 
+div.header div:last-child nav a {
+    color: var(--pastel-green-500);
+}
+
+div.header div:last-child nav a:hover {
+    color: var(--pastel-green-400);
+}
+
+.nota {
+    font-size: 0.75em;
+    font-style: italic;
+    color: red;
+}
+
+/*********************************/
+
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -89,6 +105,12 @@ div.nav {
     background-color: var(--pastel-green-50);
 
     border-bottom: 1px solid var(--pastel-green-800);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 nav>* {

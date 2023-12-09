@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(session_status() != PHP_SESSION_ACTIVE) session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,7 +29,9 @@ session_start();
                 <a href="./index.php">leaf</a>
             </div>
             <div>
-                <a href="./index.php">Volver</a>
+                <nav>
+                    <a href="./index.php">Volver</a>
+                </nav>
             </div>
         </div>
         <div class="nav">
@@ -65,17 +67,17 @@ session_start();
             $suma = 0;
 
             foreach ($productos as $producto_id => $cantidad) {
-                $producto = obtenerProducto($producto_id);
-                $producto->cantidad = $cantidad;
+                $usuario = obtenerProducto($producto_id);
+                $usuario->cantidad = $cantidad;
 
-                mostrarProductoCarrito($producto, "./");
+                mostrarProductoCarrito($usuario, "./");
 
-                $precioTotal = floatval($producto->precio) * intval($producto->cantidad);
+                $precioTotal = floatval($usuario->precio) * intval($usuario->cantidad);
                 print '<div class="precio-total-producto"><p>$' . number_format($precioTotal, 2) . "</p></div>";
 
                 print '<div class="controles">';
-                print '<input type="button" producto-id="' . $producto->id . '" value="Quitar 1 del carrito" onclick="restarDeCarrito(this)">';;
-                print '<input type="button" producto-id="' . $producto->id . '" value="Eliminar del carrito" onclick="eliminarDeCarrito(this)">';
+                print '<input type="button" producto-id="' . $usuario->id . '" value="Quitar 1 del carrito" onclick="restarDeCarrito(this)">';;
+                print '<input type="button" producto-id="' . $usuario->id . '" value="Eliminar del carrito" onclick="eliminarDeCarrito(this)">';
                 print "</div>";
 
                 $suma += $precioTotal;

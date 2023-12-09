@@ -1,7 +1,7 @@
 <?php
 include __DIR__.'/../data/productos.php';
 
-session_start();
+if(session_status() != PHP_SESSION_ACTIVE) session_start();
 
 function hayProductoEnCarrito( int $producto_id ) {
     $carrito = $_SESSION['carrito'];
@@ -25,10 +25,10 @@ if (hayProductoEnCarrito($producto_id)) {
 }
 
 // TODO: MOSTRAR PRODUCTO Y CARRITO CON FINES DE DESARROLLO
-$producto = obtenerProducto( $producto_id );
+$usuario = obtenerProducto( $producto_id );
 
 $info = array(
-    "Agregando a '$producto->nombre' al carrito",
+    "Agregando a '$usuario->nombre' al carrito",
     "Carrito:".json_encode($_SESSION['carrito'])
 );
 

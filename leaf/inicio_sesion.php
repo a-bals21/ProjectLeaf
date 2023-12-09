@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(session_status() != PHP_SESSION_ACTIVE) session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -64,22 +64,22 @@ session_start();
                     <input type="password" name="password" id="password" placeholder="Contraseña" required>
                 </fieldset>
                 <input type="submit" value="Iniciar Sesión">
-                <?php
-                    if (isset($_GET['err'])) {
-                        echo '<p class="nota">';
-                        if ($_GET['err'] == 1) {
-                            echo 'Usuario incorrecto';
-                        } else {
-                            echo 'Contraseña incorrecta';
-                        }
-                        echo '</p>';
-                    }
-                ?>
             </form>
+            <?php
+                if (isset($_GET['err'])) {
+                    echo '<p class="nota">';
+                    if ($_GET['err'] == 1) {
+                        echo 'Usuario no existente';
+                    } else {
+                        echo 'Contraseña incorrecta';
+                    }
+                    echo '</p>';
+                }
+            ?>
         </article>
         <article>
             <h4>¿Aún sin cuenta?</h4>
-            <a href="./registro_usuario.html">Regístrate</a>
+            <a href="./registro_usuario.php">Regístrate</a>
         </article>
     </section>
     <footer>
